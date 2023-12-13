@@ -1,12 +1,10 @@
 # MieAI
 
-Implementation of MieAI for calculating optical properties of internally mixed aerosols [https://arxiv.org/pdf/2312.06497.pdf](https://arxiv.org/pdf/2312.06497.pdf) 
-
-This repo uses Core Shell model for coated spheres and contains some functions from [PyMieScat](https://pymiescatt.readthedocs.io/en/latest/) which are modified to match the MATLAB code from Tami Bond.
+Implementation of MieAI for calculating optical properties of internally mixed aerosols ([https://arxiv.org/pdf/2312.06497.pdf](https://arxiv.org/pdf/2312.06497.pdf)).
 
 # Paper
 
-Please look at [this link](https://arxiv.org/pdf/2312.06497.pdf) for the details about MieAI.
+Look at [this link](https://arxiv.org/pdf/2312.06497.pdf) for the details about MieAI.
 
 # Usage
 
@@ -15,10 +13,12 @@ Here is an example usage of MieAI for calculating aerosol optical depth (AOD):
 
 core = ['dust', 'soot', 'na', 'cl']
 shell = ['h2o', 'so4', 'nh4', 'no3']
+wavelength = 0.55 [in micrometer]
+mode = 'acc' # for accumulation mode
 
 
 dx = xr.open_dataset('/work/bb1070/b380982/Gnu_PermaStrom/5_Gnu_Age/icon-art-aging-aero_DOM01_ML_0012.nc')
-mie = MieAI(dx, lam, core=core, shell=shell, soot='soot', mode='acc', verbose=0)
+mie = MieAI(dx, lam, core=core, shell=shell, soot='soot', mode='acc')
 aod = mie.get_aod()
 ```
 
@@ -54,9 +54,10 @@ aop = mie.get_aop(dx)
 
 
 # Use cases
-2. [Code for Biomass Burning Event](wildfire.ipynb)
+1. [Code for Biomass Burning Event](wildfire.ipynb)
 2. [Code for Volcanic Eruption Event](volcano.ipynb)
-2. [Code for Dust Event](dust.ipynb)
+3. [Code for Dust Event](dust.ipynb)
+4. [Code for Volcanic Eruption Event using the MLP without quantile transform](volcano_old.ipynb)
 
 
 # References
