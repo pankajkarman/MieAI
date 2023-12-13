@@ -1,8 +1,33 @@
 # MieAI
 
-Aerosol radiative modeling (Mie) emulation using Artificial Intelligence
+Implementation of MieAI for calculating optical properties of internally mixed aerosols [https://arxiv.org/pdf/2312.06497.pdf](https://arxiv.org/pdf/2312.06497.pdf) 
 
 This repo uses Core Shell model for coated spheres and contains some functions from [PyMieScat](https://pymiescatt.readthedocs.io/en/latest/) which are modified to match the MATLAB code from Tami Bond.
+
+# Paper
+
+Please look at [this link](https://arxiv.org/pdf/2312.06497.pdf) for the details about MieAI.
+
+# Usage
+
+Here is an example usage of MieAI for calculating aerosol optical depth (AOD):
+```python
+
+core = ['dust', 'soot', 'na', 'cl']
+shell = ['h2o', 'so4', 'nh4', 'no3']
+
+
+dx = xr.open_dataset('/work/bb1070/b380982/Gnu_PermaStrom/5_Gnu_Age/icon-art-aging-aero_DOM01_ML_0012.nc')
+mie = MieAI(dx, lam, core=core, shell=shell, soot='soot', mode='acc', verbose=0)
+aod = mie.get_aod()
+```
+
+To calculate the bulk optical properties like extinction coefficient, scattering coefficient, single scattering albedo and asymmetry parameter at all vertical levels:
+
+```python
+aop = mie.get_aop(dx)
+```
+![AOD](./figs/aod.jpg)
 
 # Analysis codes
 
