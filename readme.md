@@ -10,6 +10,7 @@ Look at [this link](https://arxiv.org/pdf/2312.06497.pdf) for the details about 
 
 Here is an example usage of MieAI for calculating aerosol optical depth (AOD):
 ```python
+from aop import MieAI
 
 core = ['dust', 'soot', 'na', 'cl']
 shell = ['h2o', 'so4', 'nh4', 'no3']
