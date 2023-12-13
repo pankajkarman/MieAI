@@ -1,6 +1,6 @@
 # MieAI
 
-Implementation of MieAI for calculating optical properties of internally mixed aerosols ([https://arxiv.org/pdf/2312.06497.pdf](https://arxiv.org/pdf/2312.06497.pdf)).
+A neural network for calculating optical properties of internally mixed aerosols in atmospheric models ([https://arxiv.org/pdf/2312.06497.pdf](https://arxiv.org/pdf/2312.06497.pdf)).
 
 # Paper
 
@@ -14,16 +14,16 @@ from aop import MieAI
 
 core = ['dust', 'soot', 'na', 'cl']
 shell = ['h2o', 'so4', 'nh4', 'no3']
-wavelength = 0.55 [in micrometer]
+wavelength = 0.55 # [in micrometer]
 mode = 'acc' # for accumulation mode
 
 
-dx = xr.open_dataset('/work/bb1070/b380982/Gnu_PermaStrom/5_Gnu_Age/icon-art-aging-aero_DOM01_ML_0012.nc')
-mie = MieAI(dx, lam, core=core, shell=shell, soot='soot', mode='acc')
+dx = xr.open_dataset('icon-art-aging-aero_DOM01_ML_0012.nc')
+mie = MieAI(dx, lam, core=core, shell=shell, mode='acc')
 aod = mie.get_aod()
 ```
 
-To calculate the bulk optical properties like extinction coefficient, scattering coefficient, single scattering albedo and asymmetry parameter at all vertical levels:
+To calculate the bulk optical properties like extinction coefficient (k~e~), scattering coefficient (k~s~), single scattering albedo (SSA) and asymmetry parameter (g) at all vertical levels:
 
 ```python
 aop = mie.get_aop(dx)
