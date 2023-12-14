@@ -2,6 +2,8 @@
 
 A neural network for calculating optical properties of internally mixed aerosols in atmospheric models ([https://arxiv.org/abs/2312.06497](https://arxiv.org/abs/2312.06497)).
 
+Here is the companion fortran repository: [MieAI-Fortran](https://github.com/pankajkarman/MieAI-Fortran) 
+
 # Paper
 
 Look at the paper at [this link](https://arxiv.org/abs/2312.06497) for the details about MieAI.
