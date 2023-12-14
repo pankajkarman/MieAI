@@ -1,14 +1,14 @@
 # MieAI
 
-A neural network for calculating optical properties of internally mixed aerosols in atmospheric models ([https://arxiv.org/pdf/2312.06497.pdf](https://arxiv.org/pdf/2312.06497.pdf)).
+A neural network for calculating optical properties of internally mixed aerosols in atmospheric models ([https://arxiv.org/abs/2312.06497](https://arxiv.org/abs/2312.06497)).
 
 # Paper
 
-Look at the paper at [this link](https://arxiv.org/pdf/2312.06497.pdf) for the details about MieAI.
+Look at the paper at [this link](https://arxiv.org/abs/2312.06497) for the details about MieAI.
 
 # Usage
 
-Here is an example usage of MieAI for calculating aerosol optical depth (AOD):
+Here is an example usage of MieAI for calculating aerosol optical depth (AOD) of mixed mode aerosols using ICON-ART simulation:
 
 ```python
 
@@ -24,15 +24,15 @@ dx = xr.open_dataset('icon-art-aging-aero_DOM01_ML_0012.nc')
 mie = MieAI(dx, wavelength, core=core, shell=shell, mode=mode)
 aod = mie.get_aod()
 ```
-To calculate the bulk optical properties like extinction coefficient ($k_e$), scattering coefficient ($k_e$), single scattering albedo (SSA) and asymmetry parameter (g) at all vertical levels:
+To calculate the bulk optical properties like extinction coefficient ($k_e$), scattering coefficient ($k_e$), single scattering albedo ($\omega$) and asymmetry parameter (g) at all vertical levels:
 
 ```python
 aop = mie.get_aop(dx)
 ```
-To calculate AOPs at a particular height:
+To calculate optical properties at a particular height:
 
 ```python
-dy = dx.isel(height=50)
+dy = dx.isel(height_2=50)
 aop = mie.emulate(dy)
 ```
 ![AOD](./figs/aod.jpg)
@@ -70,5 +70,3 @@ aop = mie.emulate(dy)
 
 1. [Papers](paper.md)
 2. [Packages](software.md)
-
-
